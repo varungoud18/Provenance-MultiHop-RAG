@@ -416,10 +416,10 @@ function setActiveDagNode(nodeName) {
     if (!el) return;
     el.classList.remove("active");
     const badge = el.querySelector(".node-status-badge");
-    if (idx < targetIdx) {
+    if (idx <= targetIdx) {
       el.classList.add("completed");
       if (badge) badge.textContent = "Done ✓";
-    } else if (idx === targetIdx) {
+    } else if (idx === targetIdx + 1 && targetIdx < nodes.length - 1) {
       el.classList.add("active");
       el.classList.remove("completed");
       if (badge) badge.textContent = "Running...";

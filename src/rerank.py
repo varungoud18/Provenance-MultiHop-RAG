@@ -23,8 +23,18 @@ _cross_encoder: Any = None
 def get_cross_encoder():
     global _cross_encoder
     if _cross_encoder is None:
+        import os
+        # In cloud environments (Render, Railway, Docker) or low-memory tiers (< 512MB RAM),
+        # use the zero-RAM, instant Gemini Neural Reranker to avoid 80MB Hugging Face downloads and OOM.
+        is_cloud = bool(os.getenv("RENDER") or os.getenv("RAILWAY_ENVIRONMENT") or os.getenv("PORT") or os.getenv("DOCKER"))
+        backend = os.getenv("RERANKER_BACKEND", "gemini" if is_cloud else "auto").strip().lower()
+
+        if backend == "gemini":
+            print("[RERANK] Cloud environment detected. Using fast zero-RAM Gemini Neural Reranker.")
+            _cross_encoder = "gemini_fallback"
+            return _cross_encoder
+
         try:
-            import os
             # Prevent PyTorch from allocating large memory blocks or thread pools
             os.environ["OMP_NUM_THREADS"] = "1"
             os.environ["MKL_NUM_THREADS"] = "1"
