@@ -25,7 +25,8 @@ models/
 .cache/
 huggingface/
 
-# IDE / OS
+# IDE / OS / Local Runner
+powershell.bat
 .vscode/
 .idea/
 .DS_Store
