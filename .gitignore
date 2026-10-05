@@ -14,7 +14,11 @@ venv/
 # FAISS Indices and Intermediate Data
 data/*
 !data/.gitkeep
-*.bin
+!data/papers.json
+!data/chunks.json
+!data/chunk_metadata.json
+!data/faiss_index.bin
+data/embedding_cache.json
 
 # Model cache & checkpoints
 models/
