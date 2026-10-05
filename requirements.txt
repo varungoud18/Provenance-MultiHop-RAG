@@ -1,0 +1,29 @@
+# AI-Powered Research Agent Dependencies
+# Capstone Project: Agentic RAG with ArXiv, FAISS, Cross-Encoder, and Gemini
+
+# Google Gemini API SDK
+google-genai>=0.1.1
+google-generativeai>=0.8.0
+
+# Vector search & embeddings
+faiss-cpu>=1.8.0
+numpy>=1.24.0
+
+# Local Cross-Encoder Reranking
+sentence-transformers>=3.0.0
+torch>=2.0.0
+
+# Agent Orchestration (Stage 2)
+langgraph>=0.2.0
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.31.0
+tqdm>=4.66.0
+
+# Web Dashboard & Interactive UI (Stage 3)
+fastapi>=0.110.0
+uvicorn>=0.28.0
+streamlit>=1.35.0
+
+
