@@ -228,8 +228,24 @@ def verify_node(state: ResearchAgentState) -> Dict[str, Any]:
     # Assemble complete ordered list
     verification_results = [pre_results[i] for i in range(1, len(claims) + 1)]
 
-    # Evidence is sufficient only if at least one claim was verified and EVERY claim passed entailment
-    if verification_results:
+    # Evidence is sufficient only if at least one claim was verified, EVERY claim passed entailment,
+    # and the answer did not explicitly disclaim missing core evidence.
+    has_missing_disclaimer = any(
+        phrase in draft_answer.lower()
+        for phrase in [
+            "do not contain",
+            "does not contain",
+            "do not provide sufficient",
+            "does not provide sufficient",
+            "insufficient information",
+            "insufficient evidence",
+            "not found in the provided"
+        ]
+    )
+
+    if has_missing_disclaimer:
+        evidence_sufficient = False
+    elif verification_results:
         all_passed = all(item["is_entailed"] for item in verification_results)
         evidence_sufficient = all_passed
     else:
