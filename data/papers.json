@@ -1,41 +1,131 @@
 [
   {
-    "id": "10.1145/3514221.3526141",
-    "title": "End-to-end Optimization of Machine Learning Prediction Queries",
-    "abstract": "Prediction queries are widely used across industries to perform advanced analytics and draw insights from data. They include a data processing part (e.g., for joining, filtering, cleaning, featurizing the datasets) and a machine learning (ML) part invoking one or more trained models to perform predictions. These parts have so far been optimized in isolation, leaving significant opportunities for optimization unexplored. We present Raven, a production-ready system for optimizing prediction queries. Raven follows the enterprise architectural trend of collocating data and ML runtimes. It relies on a unified intermediate representation that captures both data and ML operators in a single graph structure to unlock two families of optimizations. First, it employs logical optimizations that pass information between the data part (and the properties of the underlying data) and the ML part to optimize each other. Second, it introduces logical-to-physical transformations that allow operators to be executed on different run-times (relational, ML, and DNN) and hardware (CPU, GPU). Novel data-driven optimizations determine the runtime to be used for each part of the query to achieve optimal performance. Our evaluation shows that Raven is able to improve performance of prediction queries on Apache Spark and SQL Server by up to 13.1x and 330x, respectively. Finally, for complex models where GPU acceleration is beneficial, Raven provides up to 8× speedup compared to state-of-the-art systems.",
-    "url": "https://doi.org/10.1145/3514221.3526141",
-    "published": "2022-06-10",
+    "id": "10.1109/iaeac.2018.8577620",
+    "title": "LSTM-CNN Hybrid Model for Text Classification",
+    "abstract": "Text classification is a classic task in the field of natural language processing. however, the existing methods of text classification tasks still need to be improved because of the complex abstraction of text semantic information and the strong relecvance of context. In this paper, we combine the advantages of two traditional neural network model, Long Short-Term Memory(LSTM) and Convolutional Neural Network(CNN). LSTM can effectively preserve the characteristics of historical information in long text sequences, and extract local features of text by using the structure of CNN. We proposes a hybrid model of LSTM and CNN, construct CNN model on the top of LSTM, the text feature vector output from LSTM is further extracted by CNN structure. The performance of the hybrid model is compared with that of other models in the experiment. The experimental results show that the hybrid model can effectively improve the accuracy of text classification.",
+    "url": "https://doi.org/10.1109/iaeac.2018.8577620",
+    "published": "2018-10-01",
     "authors": [
-      "Kwanghyun Park",
-      "Karla Saur",
-      "Dalitso Banda",
-      "Rathijit Sen",
-      "Matteo Interlandi"
+      "Jiarui Zhang",
+      "Yingxiang Li",
+      "Juan Tian",
+      "Tongyan Li"
     ]
   },
   {
-    "id": "10.61166/elm.v2i1.66",
-    "title": "Machine Learning for Database Management and Query Optimization",
-    "abstract": "In the present day, Traditional database management methods are becoming more inadequate for effective data processing as the volume of data created by systems grows. Machine learning approaches have shown promise in optimizing database queries and enhancing database administration functions such as query optimization, workload management, indexing, and data quality assurance to solve this problem. We investigate the different machine learning algorithms used for query optimization and database management in this comprehensive literature review. Our review shows that machine learning approaches such as Deep Learning (DL), Reinforcement learning (RL), supervised learning, natural language processing (NLP), and unsupervised learning, among others, may be employed for query analysis, execution, and assessment. It is feasible to increase query performance and react to changing conditions by introducing machine learning techniques into database management systems.",
-    "url": "https://doi.org/10.61166/elm.v2i1.66",
-    "published": "2024-08-12",
+    "id": "10.1109/icetst49965.2020.9080730",
+    "title": "Speaker Identification Using a Hybrid CNN-MFCC Approach",
+    "abstract": "In this paper, a novel architecture is proposed using a convolutional neural network (CNN) and mel frequency cepstral coefficient (MFCC) to identify the speaker in a noisy environment. This architecture is used in a text-independent setting. The most important task in any text-independent speaker identification is the capability of the system to learn features that are useful for classification. We are using a hybrid feature extraction technique using CNN as a feature extractor combines with MFCC as a single set. For classification, we used a deep neural network which shows very promising results in classifying speakers. We made our dataset containing 60 speakers, each speaker has 4 voice samples. Our best hybrid model achieved an accuracy of 87.5%. To verify the effectiveness of this hybrid architecture, we use parameters such as accuracy and precision.",
+    "url": "https://doi.org/10.1109/icetst49965.2020.9080730",
+    "published": "2020-03-01",
     "authors": [
-      "Mohammed Marzook Fathima Fahima",
-      "Abul Hassan Sahna Sreen",
-      "S.L. Fathima Ruksana",
-      "D.T.E. Weihena",
-      "Mohamed Hasan Mohamed Majid"
+      "Aweem Ashar",
+      "Muhammad Shahid Bhatti",
+      "Usama Mushtaq"
     ]
   },
   {
-    "id": "10.63282/3050-9246.ijetcsit-v4i4p112",
-    "title": "Query Optimization Using Machine Learning",
-    "abstract": "Traditional database optimizers rely on hand-crafted heuristics and cost models that assume predicate independence, uniform distributions, and stable runtime conditions. These assumptions are generally flawed on contemporary, heterogeneous workloads deep join trees, correlated attributes, UDFs, and elastic cloud resources that give rise to cascading cardinality errors, ineffective plan decisions, and inflated tail latencies. Machine learning (ML) offers it as an alternative based on the data. Report on and synthesize ML methods that enhance three optimizer layers: (i) predictive (learned cardinality estimators, neural cost models, plan-time latency predictors), (ii) decision (reinforcement learning to join ordering, operator selection, and knob tuning), and (iii) control (bandits to online adaptation, uncertainty-sensitive pruning, and rollback guardrails) in this paper. Present feature representations of SQL/ASTs, logical/physical plan DAGS, and operator-level sketches; contrast offline training on past logs with online continual learning; and study robustness to distribution shift and drift. Analytical and mixed workloads Empirical data using both analytical and mixed workloads indicate steady double-digit decrees in end-to-end execution time and SLO violations with low overheads in optimization. Another set of engineering concerns find are cold start, query log privacy, and interaction with concurrency control, and integration patterns of reproducibility and outline covering advisory scoring to end-to-end learned optimizers. The paper is finalized with a research agenda that is dedicated to uncertainty-calibrated planning, cross-database transfer, explainability, and cross-tail and standardized benchmarks",
-    "url": "https://doi.org/10.63282/3050-9246.ijetcsit-v4i4p112",
-    "published": "2023-01-01",
+    "id": "10.1145/2993148.2997632",
+    "title": "Video-based emotion recognition using CNN-RNN and C3D hybrid networks",
+    "abstract": "In this paper, we present a video-based emotion recognition system submitted to the EmotiW 2016 Challenge. The core module of this system is a hybrid network that combines recurrent neural network (RNN) and 3D convolutional networks (C3D) in a late-fusion fashion. RNN and C3D encode appearance and motion information in different ways. Specifically, RNN takes appearance features extracted by convolutional neural network (CNN) over individual video frames as input and encodes motion later, while C3D models appearance and motion of video simultaneously. Combined with an audio module, our system achieved a recognition accuracy of 59.02% without using any additional emotion-labeled video clips in training set, compared to 53.8% of the winner of EmotiW 2015. Extensive experiments show that combining RNN and C3D together can improve video-based emotion recognition noticeably.",
+    "url": "https://doi.org/10.1145/2993148.2997632",
+    "published": "2016-10-31",
     "authors": [
-      "Nagireddy Karri",
-      "Partha Sarathi Reddy Pedda Muntala"
+      "Fan Yin",
+      "Xiangju Lu",
+      "Dian Li",
+      "Yuanliu Liu"
+    ]
+  },
+  {
+    "id": "10.1515/jisys-2018-0372",
+    "title": "A Hybrid of Deep CNN and Bidirectional LSTM for Automatic Speech Recognition",
+    "abstract": "Abstract Deep neural networks (DNNs) have been playing a significant role in acoustic modeling. Convolutional neural networks (CNNs) are the advanced version of DNNs that achieve 4–12% relative gain in the word error rate (WER) over DNNs. Existence of spectral variations and local correlations in speech signal makes CNNs more capable of speech recognition. Recently, it has been demonstrated that bidirectional long short-term memory (BLSTM) produces higher recognition rate in acoustic modeling because they are adequate to reinforce higher-level representations of acoustic data. Spatial and temporal properties of the speech signal are essential for high recognition rate, so the concept of combining two different networks came into mind. In this paper, a hybrid architecture of CNN-BLSTM is proposed to appropriately use these properties and to improve the continuous speech recognition task. Further, we explore different methods like weight sharing, the appropriate number of hidden units, and ideal pooling strategy for CNN to achieve a high recognition rate. Specifically, the focus is also on how many BLSTM layers are effective. This paper also attempts to overcome another shortcoming of CNN, i.e. speaker-adapted features, which are not possible to be directly modeled in CNN. Next, various non-linearities with or without dropout are analyzed for speech tasks. Experiments indicate that proposed hybrid architecture with speaker-adapted features and maxout non-linearity with dropout idea shows 5.8% and 10% relative decrease in WER over the CNN and DNN systems, respectively.",
+    "url": "https://doi.org/10.1515/jisys-2018-0372",
+    "published": "2019-03-05",
+    "authors": [
+      "Vishal Passricha",
+      "Rajesh Kumar Aggarwal"
+    ]
+  },
+  {
+    "id": "10.1109/tvt.2021.3071622",
+    "title": "Remaining Useful Life Assessment for Lithium-Ion Batteries Using CNN-LSTM-DNN Hybrid Method",
+    "abstract": "The prediction of a Lithium-ion battery's lifetime is very important for ensuring safety and reliability. In addition, it is utilized as an early warning system to prevent the battery's failure. Recent advance in Machine Learning (ML) is an enabler for new data-driven estimation approaches. In this paper, we suggest a hybrid method, named the CNN-LSTM-DNN, which is a combination of Convolutional Neural Network (CNN), Long Short Term Memory (LSTM), and Deep Neural Networks (DNN), for the estimation of the battery's remaining useful life (RUL) and improving prediction accuracy with acceptable execution time. A comparison against various ML estimation algorithms is carried out to show the superiority of the proposed hybrid estimation approach. For that, three statistical indicators, i.e., the MAE, R2, and RMSE, are selected to assess numerically the prediction results. Experimental validation is performed using two datasets of different lithium-ion batteries from NASA and CALCE. Thus, results reveal that hybrid methods perform better than the single ones, also the effectiveness of the suggested method in reducing the prediction error and in achieving better RUL prediction performance compared to the other methods.",
+    "url": "https://doi.org/10.1109/tvt.2021.3071622",
+    "published": "2021-04-09",
+    "authors": [
+      "Brahim Zraibi",
+      "Chafik Okar",
+      "Hicham Chaoui",
+      "Mohamed Mansouri"
+    ]
+  },
+  {
+    "id": "10.1016/j.engappai.2023.106041",
+    "title": "Long-term traffic flow forecasting using a hybrid CNN-BiLSTM model",
+    "abstract": "The increase of road traffic in large cities during the last years has produced that long and short-term traffic flow forecasting is a critical need for the authorities. The availability of good traffic flow prediction methods is a must to make informed decisions concerning (punctual) traffic congestions. Previous work has shown that the accuracy of these methods decreases if we consider urban traffic and long-term predictions. In this paper we present a hybrid model, combining a Convolutional Neural Network and a Bidirectional Long–Short-Term Memory network, and apply it to long-term traffic flow prediction in urban routes. This model combines the capability of CNN to extract hidden valuable features from the input model and the capability of BiLSTM to understand the temporal context. In order to assess the usefulness of our model, we considered four streets of the city of Madrid with different characteristics and compared the results of our proposed model with the ones obtained by eight widely used baseline models. The results show that our hybrid model outperforms the baseline models with respect to three metrics commonly used in regression: mean absolute error, root mean squared error and accuracy.",
+    "url": "https://doi.org/10.1016/j.engappai.2023.106041",
+    "published": "2023-03-01",
+    "authors": [
+      "Manuel Méndez",
+      "Mercedes G. Merayo",
+      "Manuel A. Nunez"
+    ]
+  },
+  {
+    "id": "10.1109/cvpr.2017.159",
+    "title": "End-to-End Training of Hybrid CNN-CRF Models for Stereo",
+    "abstract": "We propose a novel and principled hybrid CNN+CRF model for stereo estimation. Our model allows to exploit the advantages of both, convolutional neural networks (CNNs) and conditional random fields (CRFs) in an unified approach. The CNNs compute expressive features for matching and distinctive color edges, which in turn are used to compute the unary and binary costs of the CRF. For inference, we apply a recently proposed highly parallel dual block descent algorithm which only needs a small fixed number of iterations to compute a high-quality approximate minimizer. As the main contribution of the paper, we propose a theoretically sound method based on the structured output support vector machine (SSVM) to train the hybrid CNN+CRF model on large-scale data end-to-end. Our trained models perform very well despite the fact that we are using shallow CNNs and do not apply any kind of post-processing to the final output of the CRF. We evaluate our combined models on challenging stereo benchmarks such as Middlebury 2014 and Kitti 2015 and also investigate the performance of each individual component.",
+    "url": "https://doi.org/10.1109/cvpr.2017.159",
+    "published": "2017-07-01",
+    "authors": [
+      "Patrick Knöbelreiter",
+      "Christian Reinbacher",
+      "Alexander Shekhovtsov",
+      "Thomas Pock"
+    ]
+  },
+  {
+    "id": "10.3390/app13031476",
+    "title": "A Hybrid CNN and RNN Variant Model for Music Classification",
+    "abstract": "Music genre classification has a significant role in information retrieval for the organization of growing collections of music. It is challenging to classify music with reliable accuracy. Many methods have utilized handcrafted features to identify unique patterns but are still unable to determine the original music characteristics. Comparatively, music classification using deep learning models has been shown to be dynamic and effective. Among the many neural networks, the combination of a convolutional neural network (CNN) and variants of a recurrent neural network (RNN) has not been significantly considered. Additionally, addressing the flaws in the particular neural network classification model, this paper proposes a hybrid architecture of CNN and variants of RNN such as long short-term memory (LSTM), Bi-LSTM, gated recurrent unit (GRU), and Bi-GRU. We also compared the performance based on Mel-spectrogram and Mel-frequency cepstral coefficient (MFCC) features. Empirically, the proposed hybrid architecture of CNN and Bi-GRU using Mel-spectrogram achieved the best accuracy at 89.30%, whereas the hybridization of CNN and LSTM using MFCC achieved the best accuracy at 76.40%.",
+    "url": "https://doi.org/10.3390/app13031476",
+    "published": "2023-01-22",
+    "authors": [
+      "Mohsin Ashraf",
+      "Fazeel Abid",
+      "Ikram Ud Din",
+      "Jawad Rasheed",
+      "Mirsat Yeşiltepe"
+    ]
+  },
+  {
+    "id": "10.1109/jbhi.2019.2914690",
+    "title": "A Hybrid Global-Local Representation CNN Model for Automatic Cataract Grading",
+    "abstract": "Cataract is one of the most serious eye diseases leading to blindness. Early detection and treatment can reduce the rate of blindness in cataract patients. However, the professional knowledge of ophthalmologists is necessary for the clinical cataract detection. Therefore, the potential costs may make it difficult for the widespread use of cataract detection to prevent blindness. Artificial intelligence assisted diagnosis based on medical images has attracted more and more attention of researchers. Many studies have focused on the use of pre-defined feature sets for cataract classification, but the predefined feature sets may be incomplete or redundant. On account of the aforementioned issues, some studies have proposed deep learning methods to automatically extract image features, but all based on global features and none has analyzed the layer-by-layer transformation process of the middle-tier features. This paper uses convolutional neural networks (CNN) to learn useful features directly from input data, and deconvolution network method is employed to investigate how CNN characterizes cataract layer-by-layer. We found that compared to the global feature set, the detail vascular information, which is lost after multi-layer convolution calculation also plays an important role in cataract grading task. And this finding fits with the morphological definition of fundus image. Through the finding, we gained insights into the design of hybrid global-local feature representation model to improve the recognition performance of automatic cataract grading.",
+    "url": "https://doi.org/10.1109/jbhi.2019.2914690",
+    "published": "2019-05-03",
+    "authors": [
+      "Xi Xu",
+      "Linglin Zhang",
+      "Jianqiang Li",
+      "Yu Guan",
+      "Li Zhang"
+    ]
+  },
+  {
+    "id": "10.1155/2021/1835056",
+    "title": "Analysis of DNA Sequence Classification Using CNN and Hybrid Models",
+    "abstract": "In a general computational context for biomedical data analysis, DNA sequence classification is a crucial challenge. Several machine learning techniques have used to complete this task in recent years successfully. Identification and classification of viruses are essential to avoid an outbreak like COVID-19. Regardless, the feature selection process remains the most challenging aspect of the issue. The most commonly used representations worsen the case of high dimensionality, and sequences lack explicit features. It also helps in detecting the effect of viruses and drug design. In recent days, deep learning (DL) models can automatically extract the features from the input. In this work, we employed CNN, CNN-LSTM, and CNN-Bidirectional LSTM architectures using Label and K -mer encoding for DNA sequence classification. The models are evaluated on different classification metrics. From the experimental results, the CNN and CNN-Bidirectional LSTM with K -mer encoding offers high accuracy with 93.16% and 93.13%, respectively, on testing data.",
+    "url": "https://doi.org/10.1155/2021/1835056",
+    "published": "2021-07-15",
+    "authors": [
+      "Hemalatha Gunasekaran",
+      "Krishnamoorthi Ramalakshmi",
+      "A. Rex Macedo Arokiaraj",
+      "S. Deepa Kanmani",
+      "Chandran Venkatesan"
     ]
   }
 ]

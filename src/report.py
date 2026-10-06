@@ -43,7 +43,7 @@ def report_node(state: ResearchAgentState) -> Dict[str, Any]:
                 lines.append(f"  - Audit Reason: {v.get('reason', 'Evidence does not entail claim')}")
     else:
         lines.append(f"> **Academic Scope Advisory:**\n> {draft_answer}\n")
-        lines.append("No factual claims could be strictly entailed from the retrieved academic preprints on arXiv.")
+        lines.append("No factual claims could be strictly entailed from the retrieved academic literature.")
 
     # Document any refuted / unverified assertions from earlier hops (e.g. Hop 0)
     hop_history = state.get("hop_history", [])
@@ -71,7 +71,7 @@ def report_node(state: ResearchAgentState) -> Dict[str, Any]:
             lines.append(f"  - Audit Reason: {u['reason']}")
 
     lines.append("\n---\n")
-    lines.append("## Working arXiv Evidence Sources & Bibliography\n")
+    lines.append("## Working Academic Evidence Sources & Bibliography\n")
 
     # Collect unique papers from reranked chunks
     seen_urls = set()
@@ -84,7 +84,9 @@ def report_node(state: ResearchAgentState) -> Dict[str, Any]:
         s_num = chunk.get("source_num", source_idx)
         score_info = f" (Cross-Encoder: {chunk['cross_encoder_score']:+.4f})" if "cross_encoder_score" in chunk else ""
         lines.append(f"[{s_num}] **{chunk.get('paper_title')}**{score_info}")
-        lines.append(f"- **arXiv URL:** {url}")
+        is_arxiv = "arxiv.org" in (url or "")
+        url_label = "arXiv URL" if is_arxiv else "Paper URL / DOI"
+        lines.append(f"- **{url_label}:** {url}")
         lines.append(f"- **Paper ID:** `{chunk.get('paper_id')}`\n")
         source_idx += 1
 

@@ -700,7 +700,7 @@ function updateHopRerank(event) {
         </td>
         <td class="font-mono" style="color: #a5b4fc;">${c.cross_encoder_score}</td>
         <td>
-          <a href="${c.paper_url}" target="_blank" style="color: var(--cyan); text-decoration: none;">arXiv ↗</a>
+          <a href="${c.paper_url}" target="_blank" style="color: var(--cyan); text-decoration: none;">${c.paper_url && c.paper_url.includes("arxiv.org") ? "arXiv ↗" : "DOI ↗"}</a>
         </td>
       </tr>
     `).join("");
@@ -1091,7 +1091,7 @@ function renderFinalReport(event) {
                       <span class="rejected-title" title="${escapeHtml(c.paper_title)}">${escapeHtml(c.paper_title)}</span>
                     </div>
                     <a href="${c.paper_url}" target="_blank" rel="noopener noreferrer" class="rejected-link">
-                      arXiv ↗
+                      ${c.paper_url && c.paper_url.includes("arxiv.org") ? "arXiv ↗" : "DOI ↗"}
                     </a>
                   </div>
                 `).join('')}
