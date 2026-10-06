@@ -1248,19 +1248,27 @@ dom.btnOpenCorpus.addEventListener("click", async () => {
       return;
     }
 
-    dom.corpusTbody.innerHTML = papers.map((p, idx) => `
+    dom.corpusTbody.innerHTML = papers.map((p, idx) => {
+      const isArxiv = (p.url && p.url.includes("arxiv.org")) || (p.id && /^\d{4}\.\d{4,5}/.test(p.id));
+      const sourceLabel = isArxiv ? "arXiv ↗" : "DOI ↗";
+      const pdfUrl = isArxiv
+        ? (p.url ? p.url.replace('/abs/', '/pdf/') + '.pdf' : '#')
+        : (p.url || '#');
+
+      return `
       <tr>
         <td><strong>${idx + 1}</strong></td>
         <td><strong>${escapeHtml(p.title)}</strong></td>
         <td>${p.published ? p.published.substring(0, 10) : 'N/A'}</td>
-        <td class="font-mono">${p.id || 'N/A'}</td>
+        <td class="font-mono" style="font-size: 0.82rem;">${p.id || 'N/A'}</td>
         <td>
-          <a href="${p.url}" target="_blank" rel="noopener noreferrer">arXiv ↗</a>
+          <a href="${p.url}" target="_blank" rel="noopener noreferrer">${sourceLabel}</a>
           <span style="color: var(--text-faint); margin: 0 4px;">•</span>
-          <a href="${p.url ? p.url.replace('/abs/', '/pdf/') + '.pdf' : '#'}" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">PDF ↗</a>
+          <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">${isArxiv ? 'PDF ↗' : 'Source ↗'}</a>
         </td>
       </tr>
-    `).join("");
+      `;
+    }).join("");
   } catch (err) {
     dom.corpusTbody.innerHTML = `<tr><td colspan="5" style="color: #f87171; text-align: center; padding: 20px;">Failed to load corpus: ${err.message}</td></tr>`;
   }

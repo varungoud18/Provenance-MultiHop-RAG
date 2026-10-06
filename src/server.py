@@ -193,7 +193,7 @@ def run_agent_thread(initial_state: ResearchAgentState, event_queue: queue.Queue
         if auto_harvest:
             event_queue.put({
                 "type": "harvest_start",
-                "message": f"Auto-harvesting live arXiv papers matching: '{initial_state['original_query']}'..."
+                "message": f"Discovering live peer-reviewed literature matching: '{initial_state['original_query']}'..."
             })
             with ingest_lock:
                 try:
