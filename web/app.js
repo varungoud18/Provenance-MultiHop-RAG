@@ -1169,6 +1169,7 @@ function renderSourcesTab(chunks) {
   const itemsHtml = uniquePapers.map(p => {
     const isArxiv = p.paper_url && p.paper_url.includes("arxiv.org");
     const rawPdf = p.pdf_url || (isArxiv && p.paper_url ? p.paper_url.replace('/abs/', '/pdf/') + '.pdf' : null);
+    const hasPdf = Boolean(p.pdf_url) || isArxiv;
     const viewHref = formatPdfViewerUrl(rawPdf);
     const pdfBtn = (hasPdf && rawPdf)
       ? `<a href="${viewHref}" target="_blank" rel="noopener noreferrer" class="source-url" style="color: var(--primary); border-color: rgba(99, 102, 241, 0.4);" title="View document inline in browser"><span>📄 View PDF</span> <span>↗</span></a>`
