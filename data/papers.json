@@ -1,119 +1,134 @@
 [
   {
-    "id": "W2550810496",
-    "title": "Query Optimization using SQL Transformations",
-    "abstract": "Query optimization is of great importance for the performance of a relational database, especially for the execution of complex SQL statements. A query optimizer determines the best strategy for performing each query. The query optimizer chooses, for example, whether or not to use indexes for a given query, and which join techniques to use when joining multiple tables. These decisions have a tremendous effect on SQL performance, and query optimization is a key technology for every application, from operational systems to data warehouse and analysis systems to content-management systems. Oracle’s optimizer consists of four major components: SQL transformations, Execution plan selection, Cost model and statistics and Dynamic runtime optimization. We will discuss SQL transformations in this paper. 1.",
-    "url": "https://openalex.org/W2550810496",
+    "id": "10.1145/3448016.3452838",
+    "title": "Bao: Making Learned Query Optimization Practical",
+    "abstract": "Recent efforts applying machine learning techniques to query optimization have shown few practical gains due to substantive training overhead, inability to adapt to changes, and poor tail performance. Motivated by these difficulties, we introduce Bao (the \\underlineBa ndit \\underlineo ptimizer). Bao takes advantage of the wisdom built into existing query optimizers by providing per-query optimization hints. Bao combines modern tree convolutional neural networks with Thompson sampling, a well-studied reinforcement learning algorithm. As a result, Bao automatically learns from its mistakes and adapts to changes in query workloads, data, and schema. Experimentally, we demonstrate that Bao can quickly learn strategies that improve end-to-end query execution performance, including tail latency, for several workloads containing long-running queries. In cloud environments, we show that Bao can offer both reduced costs and better performance compared with a commercial system.",
+    "url": "https://doi.org/10.1145/3448016.3452838",
+    "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/3448016.3452838",
+    "published": "2021-06-09",
+    "authors": [
+      "Ryan Marcus",
+      "Parimarjan Negi",
+      "Hongzi Mao",
+      "Nesime Tatbul",
+      "Mohammad Alizadeh"
+    ]
+  },
+  {
+    "id": "10.14778/3583140.3583160",
+    "title": "Lero: A Learning-to-Rank Query Optimizer",
+    "abstract": "A recent line of works apply machine learning techniques to assist or rebuild cost-based query optimizers in DBMS. While exhibiting superiority in some benchmarks, their deficiencies, e.g., unstable performance, high training cost, and slow model updating, stem from the inherent hardness of predicting the cost or latency of execution plans using machine learning models. In this paper, we introduce a learning-to-rank query optimizer, called Lero, which builds on top of a native query optimizer and continuously learns to improve the optimization performance. The key observation is that the relative order or rank of plans, rather than the exact cost or latency, is sufficient for query optimization. Lero employs a pairwise approach to train a classifier to compare any two plans and tell which one is better. Such a binary classification task is much easier than the regression task to predict the cost or latency, in terms of model efficiency and accuracy. Rather than building a learned optimizer from scratch, Lero is designed to leverage decades of wisdom of databases and improve the native query optimizer. With its non-intrusive design, Lero can be implemented on top of any existing DBMS with minimal integration efforts. We implement Lero and demonstrate its outstanding performance using PostgreSQL. In our experiments, Lero achieves near optimal performance on several benchmarks. It reduces the plan execution time of the native optimizer in PostgreSQL by up to 70% and other learned query optimizers by up to 37%. Meanwhile, Lero continuously learns and automatically adapts to query workloads and changes in data.",
+    "url": "https://doi.org/10.14778/3583140.3583160",
     "pdf_url": null,
-    "published": "2014-01-16",
+    "published": "2023-02-01",
     "authors": [
-      "Meenakshi Sharma"
+      "Rong Zhu",
+      "Wei Chen",
+      "Bolin Ding",
+      "Xingguang Chen",
+      "Andreas Pfadler"
     ]
   },
   {
-    "id": "10.18488/journal.79/2014.1.2/79.2.66.76",
-    "title": "Analytical Review of SQL Server Optimization",
-    "abstract": "It is a complex task to optimize query as well as to validate the correctness and effectiveness of query optimizer. A query optimizer should estimate and compare the costs of executing a query using different execution strategies and should choose the strategy with the lower cost estimate. To fairly and realistically compare different strategies accurate cost estimation is required. This is a challenging task to measure quality of query optimization as modern query optimizers provide more advanced optimization strategies and adaptive techniques. This paper describes different ways to improve the performance of SQL Server queries, index optimization with occasional references to particular SQL code and how to achieve the best performance for the given tables and queries by giving some tips for query optimization in Microsoft SQL Server. The paper provides a detailed overview of query optimization, Optimization techniques, testing of optimization techniques that are used to validate the query optimizer of Microsoft’s SQL Server and issues in query optimization testing.",
-    "url": "https://doi.org/10.18488/journal.79/2014.1.2/79.2.66.76",
-    "pdf_url": "https://archive.conscientiabeam.com/index.php/79/article/download/2663/4146",
-    "published": "2014-01-01",
-    "authors": [
-      "Gaurav Kumar",
-      "Arun Sangwan"
-    ]
-  },
-  {
-    "id": "10.3390/app12094569",
-    "title": "An Approach to Aid Decision-Making by Solving Complex Optimization Problems Using SQL Queries",
-    "abstract": "In combinatorial optimization, the more complex a problem is, the more challenging it becomes, usually causing most research to focus on creating solvers for larger cases. However, real-life situations also contain small-sized instances that deserve a researcher’s attention. For example, within a web development context, a developer might face small combinatorial optimization cases that fall in the following situations to solve them: (1) the development of an ad hoc specialized strategy is not justified; (2) the developer could lack the time, or skills, to create the solution; (3) the efficiency of naive brute force strategies might be compromised due to the programming paradigm use. Similar situations in this context, combined with a recent increasing interest in optimization information from databases, open a research area to develop easy-to-implement strategies that compete with those naive approaches and do not require specialized knowledge. Therefore, this work revises Structured Query Language (SQL) approaches and proposes new methods to tackle combinatorial optimization problems such as the Portfolio Selection Problem, Maximum Clique Problem, and Graph Coloring Problem. The performance of the resulting queries is compared against naive approaches; its potential to extend to other optimization problems is studied. The presented examples demonstrate the simplicity and versatility of using a SQL approach to solve small optimization problem instances.",
-    "url": "https://doi.org/10.3390/app12094569",
-    "pdf_url": "https://www.mdpi.com/2076-3417/12/9/4569/pdf?version=1651319244",
-    "published": "2022-04-30",
-    "authors": [
-      "José Torres-Jiménez",
-      "Nelson Rangel-Valdez",
-      "Miguel De‐la‐Torre",
-      "Himer Ávila-George"
-    ]
-  },
-  {
-    "id": "10.1109/icde.2007.368993",
-    "title": "Robust Heuristics for Scalable Optimization of Complex SQL Queries",
-    "abstract": "Modern database systems incorporate a query optimizer to identify the most efficient \"query execution plan\" for executing the declarative SQL queries submitted by users. A dynamic-programming-based approach is used to exhaustively enumerate the combinatorially large search space of plan alternatives and, using a cost model, to identify the optimal choice. While dynamic programming (DP) works very well for moderately complex queries with up to around a dozen base relations, it usually fails to scale beyond this stage due to its inherent exponential space and time complexity. Therefore, DP becomes practically infeasible for complex queries with a large number of base relations, such as those found in current decision-support and enterprise management applications. To address the above problem, a variety of approaches have been proposed in the literature. Some completely jettison the DP approach and resort to alternative techniques such as randomized algorithms, whereas others have retained DP by using heuristics to prune the search space to computationally manageable levels. In the latter class, a well-known strategy is \"iterative dynamic programming\" (IDP) wherein DP is employed bottom-up until it hits its feasibility limit, and then iteratively restarted with a significantly reduced subset of the execution plans currently under consideration. The experimental evaluation of IDP indicated that by appropriate choice of algorithmic parameters, it was possible to almost always obtain \"good\" (within a factor of twice of the optimal) plans, and in the few remaining cases, mostly \"acceptable\" (within an order of magnitude of the optimal) plans, and rarely, a \"bad\" plan. While IDP is certainly an innovative and powerful approach, we have found that there are a variety of common query frameworks wherein it can fail to consistently produce good plans, let alone the optimal choice. This is especially so when star or clique components are present, increasing the complexity of the join graphs. Worse, this shortcoming is exacerbated when the number of relations participating in the query is scaled upwards.",
-    "url": "https://doi.org/10.1109/icde.2007.368993",
+    "id": "10.14778/2536222.2536223",
+    "title": "Continuous cloud-scale query optimization and processing",
+    "abstract": "Massive data analysis in cloud-scale data centers plays a crucial role in making critical business decisions. High-level scripting languages free developers from understanding various system trade-offs, but introduce new challenges for query optimization. One key optimization challenge is missing accurate data statistics, typically due to massive data volumes and their distributed nature, complex computation logic, and frequent usage of user-defined functions. In this paper we propose novel techniques to adapt query processing in the Scope system, the cloud-scale computation environment in Microsoft Online Services. We continuously monitor query execution, collect actual runtime statistics, and adapt parallel execution plans as the query executes. We discuss similarities and differences between our approach and alternatives proposed in the context of traditional centralized systems. Experiments on large-scale Scope production clusters show that the proposed techniques systematically solve the challenge of missing/inaccurate data statistics, detect and resolve partition skew and plan structure, and improve query latency by a few folds for real workloads. Although we focus on optimizing high-level languages, the same ideas are also applicable for MapReduce systems.",
+    "url": "https://doi.org/10.14778/2536222.2536223",
     "pdf_url": null,
-    "published": "2007-04-01",
+    "published": "2013-08-01",
     "authors": [
-      "Gopal Chandra Das",
-      "Jayant R. Haritsa"
+      "Nicolas Bruno",
+      "Sapna Jain",
+      "Jingren Zhou"
     ]
   },
   {
-    "id": "W2349443635",
-    "title": "SQL Statement in Database Systems to Optimize",
-    "abstract": "The database query is the most basic and commonly used,the most complex operation,query the merits of operating a direct impact on the performance of database applications.This article discusses the technology based on SQL query rewriting the database query optimization strategies,through query rewriting can be written by the user efficiency of SQL statements to re-optimize the portfolio to become more efficient query.",
-    "url": "https://openalex.org/W2349443635",
+    "id": "10.14778/3236187.3236189",
+    "title": "Join query optimization techniques for complex event processing applications",
+    "abstract": "Complex event processing (CEP) is a prominent technology used in many modern applications for monitoring and tracking events of interest in massive data streams. CEP engines inspect real-time information flows and attempt to detect combinations of occurrences matching predefined patterns. This is done by combining basic data items, also called \"primitive events\", according to a pattern detection plan, in a manner similar to the execution of multi-join queries in traditional data management systems. Despite this similarity, little work has been done on utilizing existing join optimization methods to improve the performance of CEP-based systems. In this paper, we provide the first theoretical and experimental study of the relationship between these two research areas. We formally prove that the CEP Plan Generation problem is equivalent to the Join Query Plan Generation problem for a restricted class of patterns and can be reduced to it for a considerably wider range of classes. This result implies the NP-completeness of the CEP Plan Generation problem. We further show how join query optimization techniques developed over the last decades can be adapted and utilized to provide practically efficient solutions for complex event detection. Our experiments demonstrate the superiority of these techniques over existing strategies for CEP optimization in terms of throughput, latency, and memory consumption.",
+    "url": "https://doi.org/10.14778/3236187.3236189",
+    "pdf_url": "https://arxiv.org/pdf/1801.09413",
+    "published": "2018-07-01",
+    "authors": [
+      "Ilya Kolchinsky",
+      "Assaf Schuster"
+    ]
+  },
+  {
+    "id": "10.66096/jigbp.v1.4",
+    "title": "Empirical Analysis of Query Optimization Strategies for Reducing Execution Latency in Large-Scale Databases",
+    "abstract": "Efficient query optimization is essential for reducing execution latency and improving performance in large-scale databases. Traditional optimization techniques such as Cost-Based Optimization (CBO), Rule-Based Optimization (RBO), indexing, and execution plan tuning have been widely used in relational, NoSQL, and distributed database systems. However, as database sizes grow exponentially and query complexity increases, these conventional approaches face challenges in handling high-latency queries, optimizing resource consumption, and adapting to dynamic workloads. This research aims to conduct an empirical analysis of query optimization strategies, comparing traditional methods with AI-driven techniques across various database architectures, including SQL, NoSQL, and distributed cloud databases. Through a series of experimental evaluations using benchmark datasets (TPC-H, TPC-DS) and real-world query workloads, we demonstrate that AI-enhanced query optimization techniques significantly improve query execution latency (up to 45% reduction), CPU usage, and disk I/O efficiency. Additionally, we propose a hybrid optimization framework integrating Machine Learning-Based Query Optimization, Adaptive Query Execution, and Query Execution Caching, which shows superior performance in distributed and large-scale environments. The findings provide valuable insights into the role of AI in modern database optimization, offering a roadmap for future research in AI-driven query execution strategies and automated workload management.",
+    "url": "https://doi.org/10.66096/jigbp.v1.4",
+    "pdf_url": "https://jigbp.com/index.php/jigbp/article/download/4/4",
+    "published": "2025-06-06",
+    "authors": [
+      "Nina Stewart",
+      "Daniel R. Adams",
+      "Uma Foster"
+    ]
+  },
+  {
+    "id": "10.36948/ijfmr.2026.v08i02.74103",
+    "title": "A Summary of SQL Optimization Methods for Optimizing Query Performance",
+    "abstract": "Efficient data retrieval is crucial for database-driven applications due to the rapid expansion of data in modern information systems. The typical way to manage and change relational databases is with SQL. But if SQL queries aren't written correctly, they might take longer to run, require a lot of CPU power, and waste valuable resources. Optimizing SQL queries makes databases work more efficiently by changing slow queries into faster execution plans. A study on SQL query optimization techniques aims to improve query execution performance in relational database systems. The study examines query optimization techniques, including indexing strategies, query rewriting, join optimization, execution plan analysis, and cost-based optimization. Also, real examples show how optimized searches considerably reduce execution time compared to non-optimized queries. Effective optimization strategies can significantly enhance database efficiency and reduce query latency, based on experiments.",
+    "url": "https://doi.org/10.36948/ijfmr.2026.v08i02.74103",
+    "pdf_url": "https://www.ijfmr.com/papers/2026/2/74103.pdf",
+    "published": "2026-04-10",
+    "authors": [
+      "Ramneet Singh Chadha",
+      "Prabhjeet Raina"
+    ]
+  },
+  {
+    "id": "10.36676/mdmp.v1.i2.32",
+    "title": "Improving Database Performance with SQL Server Optimization Techniques",
+    "abstract": "Database performance is critical for ensuring efficient data management and retrieval, particularly in environments that utilize SQL Server. As the complexity and size of databases increase, performance optimization becomes essential for maintaining responsiveness and reliability. This paper examines a range of SQL Server optimization techniques that can significantly enhance database performance. Key strategies include effective indexing, which improves query execution speed; query optimization, which refines SQL statements for better efficiency; and proper database configuration, which ensures that SQL Server is tuned for optimal resource utilization. Additionally, we explore the importance of regular maintenance tasks such as updating statistics and monitoring performance metrics to identify bottlenecks. By employing these techniques, database administrators can minimize latency, reduce resource consumption, and enhance overall system performance. Furthermore, this paper highlights the significance of ongoing performance assessments to adapt to evolving application demands and data growth. Ultimately, implementing these optimization strategies not only boosts SQL Server performance but also contributes to improved user experiences and organizational productivity.",
+    "url": "https://doi.org/10.36676/mdmp.v1.i2.32",
+    "pdf_url": "https://mathematics.moderndynamics.in/index.php/mdmp/article/download/32/33",
+    "published": "2024-08-30",
+    "authors": [
+      "Krishna Kishor Tirupati",
+      "Dr S P Singh",
+      "Sivaprasad Nadukuru",
+      "S. K. Jain",
+      "Raghav Agarwal"
+    ]
+  },
+  {
+    "id": "10.14741/ijcet/v.16.3.1",
+    "title": "Review of Query Optimization Techniques in Database Management Systems",
+    "abstract": "In database management systems (DBMSs), query optimization is a frequent practice. Its primary goal is to maximize query execution efficiency among many possibilities. In recent years, the world of data-driven applications has grown rapidly, and effective query processing is an essential element of high-performance systems and efficient resource use in cloud computing environments. In this paper, the authors review key query optimization strategies used in state-of-the-art DBMSs. These include heuristic-based optimization, cost-based optimization, semantic-based optimization for both join and indexing strategies and sub-query rewriting methods. The study contextually explores new AI/ML-based optimization techniques that contribute towards enhancing adaptive query execution and automated tuning in the dynamic environment. Apart from this, the paper also discusses the role of query execution plans, cost models and optimization frameworks and how they can improve the performance of databases in enterprise systems, databases in a distributed environment of the cloud and big data analytics platforms. Using a systematic literature review of recent relevant studies, researchers identify current progress and challenges in query optimization alongside possible future research directions. The paper shows that in the context of many complex (possibly correlated) workloads, modern database systems need some degree of intelligent/elastic behaviour to operate with bounded latency and resource consumption.",
+    "url": "https://doi.org/10.14741/ijcet/v.16.3.1",
+    "pdf_url": "https://ijcet.evegenis.org/index.php/ijcet/article/download/4519/3827",
+    "published": "2026-05-20",
+    "authors": [
+      "Kapil Ahir"
+    ]
+  },
+  {
+    "id": "10.31274/etd-180810-5370",
+    "title": "Adaptive Latency-Aware Query Processing in IoT Networks",
+    "abstract": "The massive adoption of The Internet of Things (IoT) and the creation of a smart-world around us leads to several privacy and security concerns. There has been significant work in the past to address the privacy and confidentiality of IoT data such as: providing secure end-to-end channels for the transmission of IoT data, encrypting IoT data using optimized cryptographic schemes such as order-preserving and homomorphic encryption that impose a reasonable energy overhead while improving security. However, for data intensive IoT applications, decrypting large data sets using cryptographic schemes is significantly expensive in terms of latency as seen by the end user of the application.\\nIn this thesis, an Adaptive Latency-Aware Query Processing over encrypted IoT data is proposed that aims to: (i) minimize query latency for data intensive applications as seen by the end user and, (ii) at the same time maintain low energy consumption overhead, comparable to the current schemes as much as possible. This work presents two main contributions: (i) a novel Adaptive latency-aware algorithm which chops down the results of a single large query into several iterations of small sized results by adaptively computing the suitable size (t) of data to be retrieved in each iteration, and (ii) a novel IoT architecture with server cache that implements a latency-hiding technique by establishing concurrency between computation and communication, while leaving the Cloud database unmodified. Both contributions together allow minimizing query latency while maintaining low energy overhead. The effectiveness of the proposed adaptive algorithm is evaluated for latency and energy performance. The results show that the proposed adaptive solution delivers significantly a better latency performance while being comparable to the existing solutions in terms of energy efficiency.",
+    "url": "https://doi.org/10.31274/etd-180810-5370",
     "pdf_url": null,
-    "published": "2009-01-01",
+    "published": "2016-01-01",
     "authors": [
-      "Wenqiang Song"
+      "Reshma Kotamsetty"
     ]
   },
   {
-    "id": "10.55544/ijrah.1.1.15",
-    "title": "SQL BI Optimization Strategies in Finance and Banking",
-    "abstract": "To this end, this paper examines the best practice in making the finance and banking industry SQL BI more efficient and effective in terms of query execution and real-time analysis. Techniques such as Indexing, partitioning, query rewriting, parallel processing, in memory tables are explained practical to large financial data sets. These strategies were identified to enhance techniques such as transaction monitoring, customer analysis, financial reporting, and risk management since their execution duration is time-consuming. The paper will also focus on the role of the optimized SQL queries in the decision-making process and the issues, seen when seeking constant performance in financially volatile demonstrative systems.",
-    "url": "https://doi.org/10.55544/ijrah.1.1.15",
-    "pdf_url": "https://ijrah.com/index.php/ijrah/article/download/615/787",
-    "published": "2021-11-30",
+    "id": "10.48550/arxiv.2302.06873",
+    "title": "Lero: A Learning-to-Rank Query Optimizer",
+    "abstract": "A recent line of works apply machine learning techniques to assist or rebuild cost-based query optimizers in DBMS. While exhibiting superiority in some benchmarks, their deficiencies, e.g., unstable performance, high training cost, and slow model updating, stem from the inherent hardness of predicting the cost or latency of execution plans using machine learning models. In this paper, we introduce a learning-to-rank query optimizer, called Lero, which builds on top of a native query optimizer and continuously learns to improve the optimization performance. The key observation is that the relative order or rank of plans, rather than the exact cost or latency, is sufficient for query optimization. Lero employs a pairwise approach to train a classifier to compare any two plans and tell which one is better. Such a binary classification task is much easier than the regression task to predict the cost or latency, in terms of model efficiency and accuracy. Rather than building a learned optimizer from scratch, Lero is designed to leverage decades of wisdom of databases and improve the native query optimizer. With its non-intrusive design, Lero can be implemented on top of any existing DBMS with minimal integration efforts. We implement Lero and demonstrate its outstanding performance using PostgreSQL. In our experiments, Lero achieves near optimal performance on several benchmarks. It reduces the plan execution time of the native optimizer in PostgreSQL by up to 70% and other learned query optimizers by up to 37%. Meanwhile, Lero continuously learns and automatically adapts to query workloads and changes in data.",
+    "url": "https://doi.org/10.48550/arxiv.2302.06873",
+    "pdf_url": "https://arxiv.org/pdf/2302.06873",
+    "published": "2023-02-14",
     "authors": [
-      "Sai Krishna Shiramshetty"
-    ]
-  },
-  {
-    "id": "W1504218467",
-    "title": "Testing SQL Server's Query Optimizer: Challenges, Techniques and Experiences.",
-    "abstract": "Query optimization is an inherently complex problem, and validating the correctness and effectiveness of a query optimizer can be a task of comparable complexity. The overall process of measuring query optimization quality becomes increasingly challenging as modern query optimizers provide more advanced optimization strategies and adaptive techniques. In this paper we present a practitioner’s account of query optimization testing. We discuss some of the unique issues in testing a query optimizer, and we provide a high-level overview of the testing techniques used to validate the query optimizer of Microsoft’s SQL Server. We offer our experiences and discuss a few ongoing challenges, which we hope can inspire additional research in the area of query optimization and DBMS testing. 1",
-    "url": "https://openalex.org/W1504218467",
-    "pdf_url": null,
-    "published": "2008-01-01",
-    "authors": [
-      "Leo Giakoumakis",
-      "César A. Galindo-Legaria"
-    ]
-  },
-  {
-    "id": "10.32628/ijsrst2152548",
-    "title": "SQL BI Optimization Strategies in Finance and Banking",
-    "abstract": "To this end, this paper examines the best practice in making the finance and banking industry SQL BI more efficient and effective in terms of query execution and real-time analysis. Techniques such as Indexing, partitioning, query rewriting, parallel processing, in memory tables are explained practical to large financial data sets. These strategies were identified to enhance techniques such as transaction monitoring, customer analysis, financial reporting, and risk management since their execution duration is time-consuming. The paper will also focus on the role of the optimized SQL queries in the decision-making process and the issues, seen when seeking constant performance in financially volatile demonstrative systems.",
-    "url": "https://doi.org/10.32628/ijsrst2152548",
-    "pdf_url": "https://ijsrst.com/paper/13080.pdf",
-    "published": "2021-10-10",
-    "authors": [
-      "Sai Krishna Shiramshetty"
-    ]
-  },
-  {
-    "id": "10.1007/978-1-4302-0048-2_7",
-    "title": "Essential SQL",
-    "abstract": "We’ve certainly covered a lot of ground in this chapter, with plenty of code examples to demonstrate the techniques. After discussing some SQL code style issues, we presented a review of join types, highlighting some important areas, such as using outer joins effectively. Next, you learned how to read the in-depth information provided by EXPLAIN about your SELECT statements. We went over how to interpret the EXPLAIN results and determine if MySQL is constructing a properly efficient query execution plan. We stressed that most of the time, it does. In case MySQL didn’t pick the plan you prefer to use, we showed you some techniques using hints, which you can use to suggest that MySQL find a more effective join order or index access strategy. Finally, we worked through the advanced subquery and derived table offerings available in MySQL 4.1. In the next chapter, we build on this base knowledge, turning our attention to two more SQL topics. First, we’ll look at how MySQL optimizes query execution and how you can increase query speed. Then we’ll look at scenarios often encountered in application development and administration, and some advanced query techniques you can use to solve these common, but often complex, problems.",
-    "url": "https://doi.org/10.1007/978-1-4302-0048-2_7",
-    "pdf_url": null,
-    "published": "2006-11-06",
-    "authors": []
-  },
-  {
-    "id": "10.12783/dteees/peem2016/5029",
-    "title": "SQL Query Optimization on Cross Nodes for Distributed System",
-    "abstract": "Query terms are also expanded from several dimensions of simple query expansion to complex query of multi dimension. It is becoming more and more difficult to extract, store and analyze the massive data by using the traditional database software. So the better query strategy is the key to optimize the database query operation. As the important method of database analysis data, SQL query plays an important role in analyzing and processing data. Through SQL inquiries, users can get their most concerned information quickly. With the continuous development of the Internet industry, the data need to deal with in database continues to expand its scale. Database shows its characteristics as large amount, multiple types, fast processing speed and low density value. This paper proposed a new global adaptive optimization processing method in order to achieve the purpose of reducing the number of data I/O and load balance when SQL query is carried out in the distributed parallel system. Its characteristic is: to build a multi-factor decision fuzzy evaluation model for each sub-query path optimization decision and to definite the optimized global cost function for adaptive optimization on global query path which will satisfy the total cost minimum requirements for the purpose of query. The experiments show that the global query method has the faster query speed. At the same time, the total cost of query is controllable by defining the global optimized cost function.",
-    "url": "https://doi.org/10.12783/dteees/peem2016/5029",
-    "pdf_url": null,
-    "published": "2017-01-10",
-    "authors": [
-      "Feng Zhao",
-      "Qiao Sun",
-      "Yanbin Jiao",
-      "Jiasong Sun"
+      "Rong Zhu",
+      "Wei Chen",
+      "Bolin Ding",
+      "Xingguang Chen",
+      "Andreas Pfadler"
     ]
   }
 ]
