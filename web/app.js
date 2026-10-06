@@ -18,6 +18,19 @@ const state = {
   isStreaming: false,
 };
 
+/**
+ * Normalizes PDF URLs for inline in-browser viewing.
+ * For external publisher download links that enforce attachment downloads,
+ * routes through Google Docs Web Viewer so users can read the paper inline without downloading to disk.
+ */
+function formatPdfViewerUrl(rawPdfUrl) {
+  if (!rawPdfUrl || rawPdfUrl === "#") return "#";
+  if (rawPdfUrl.includes("arxiv.org/pdf/")) {
+    return rawPdfUrl;
+  }
+  return `https://docs.google.com/viewer?url=${encodeURIComponent(rawPdfUrl)}&embedded=false`;
+}
+
 // DOM Element References
 const dom = {
   // Status Telemetry
@@ -365,12 +378,13 @@ function openCitationDrawer(sourceNum) {
   if (dom.drawerArxivPdfLink) {
     const isArxiv = chunk.paper_url && chunk.paper_url.includes("arxiv.org");
     const hasPdf = Boolean(chunk.pdf_url) || isArxiv;
-    const pdfHref = chunk.pdf_url || (isArxiv && chunk.paper_url ? chunk.paper_url.replace("/abs/", "/pdf/") + ".pdf" : null);
+    const rawPdf = chunk.pdf_url || (isArxiv && chunk.paper_url ? chunk.paper_url.replace("/abs/", "/pdf/") + ".pdf" : null);
+    const viewHref = formatPdfViewerUrl(rawPdf);
 
-    if (hasPdf && pdfHref) {
-      dom.drawerArxivPdfLink.href = pdfHref;
-      dom.drawerArxivPdfLink.innerHTML = `<span>📄 Direct PDF</span> <span class="btn-arrow">↗</span>`;
-      dom.drawerArxivPdfLink.title = "Open Full Text PDF";
+    if (hasPdf && rawPdf) {
+      dom.drawerArxivPdfLink.href = viewHref;
+      dom.drawerArxivPdfLink.innerHTML = `<span>📄 View PDF</span> <span class="btn-arrow">↗</span>`;
+      dom.drawerArxivPdfLink.title = "View Full Document in Browser";
     } else {
       dom.drawerArxivPdfLink.href = chunk.paper_url || "#";
       dom.drawerArxivPdfLink.innerHTML = `<span>🔗 Publisher DOI</span> <span class="btn-arrow">↗</span>`;
@@ -1154,10 +1168,10 @@ function renderSourcesTab(chunks) {
 
   const itemsHtml = uniquePapers.map(p => {
     const isArxiv = p.paper_url && p.paper_url.includes("arxiv.org");
-    const hasPdf = Boolean(p.pdf_url) || isArxiv;
-    const pdfHref = p.pdf_url || (isArxiv && p.paper_url ? p.paper_url.replace('/abs/', '/pdf/') + '.pdf' : null);
-    const pdfBtn = (hasPdf && pdfHref)
-      ? `<a href="${pdfHref}" target="_blank" rel="noopener noreferrer" class="source-url" style="color: var(--primary); border-color: rgba(99, 102, 241, 0.4);"><span>📄 Direct PDF</span> <span>↗</span></a>`
+    const rawPdf = p.pdf_url || (isArxiv && p.paper_url ? p.paper_url.replace('/abs/', '/pdf/') + '.pdf' : null);
+    const viewHref = formatPdfViewerUrl(rawPdf);
+    const pdfBtn = (hasPdf && rawPdf)
+      ? `<a href="${viewHref}" target="_blank" rel="noopener noreferrer" class="source-url" style="color: var(--primary); border-color: rgba(99, 102, 241, 0.4);" title="View document inline in browser"><span>📄 View PDF</span> <span>↗</span></a>`
       : `<span class="source-url" style="opacity: 0.7; cursor: default;" title="Full paper accessible via publisher DOI"><span>🔒 Publisher Paywall</span></span>`;
 
     return `
@@ -1266,10 +1280,11 @@ dom.btnOpenCorpus.addEventListener("click", async () => {
     dom.corpusTbody.innerHTML = papers.map((p, idx) => {
       const isArxiv = (p.url && p.url.includes("arxiv.org")) || (p.id && /^\d{4}\.\d{4,5}/.test(p.id));
       const hasPdf = Boolean(p.pdf_url) || isArxiv;
-      const pdfHref = p.pdf_url || (isArxiv && p.url ? p.url.replace('/abs/', '/pdf/') + '.pdf' : null);
+      const rawPdf = p.pdf_url || (isArxiv && p.url ? p.url.replace('/abs/', '/pdf/') + '.pdf' : null);
+      const viewHref = formatPdfViewerUrl(rawPdf);
       const sourceLabel = isArxiv ? "arXiv ↗" : "DOI ↗";
-      const pdfBtnHtml = (hasPdf && pdfHref)
-        ? `<span style="color: var(--text-faint); margin: 0 4px;">•</span><a href="${pdfHref}" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">PDF ↗</a>`
+      const pdfBtnHtml = (hasPdf && rawPdf)
+        ? `<span style="color: var(--text-faint); margin: 0 4px;">•</span><a href="${viewHref}" target="_blank" rel="noopener noreferrer" style="color: var(--primary);" title="View document inline in browser">View PDF ↗</a>`
         : `<span style="color: var(--text-faint); margin: 0 4px;">•</span><span style="color: var(--text-muted); font-size: 0.78rem;" title="Full paper accessible via publisher DOI">Paywalled</span>`;
 
       return `
