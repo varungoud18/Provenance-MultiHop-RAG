@@ -599,6 +599,18 @@ function handleAgentEvent(event) {
     `;
   } else if (event.type === "harvest_complete") {
     dom.actionBtnText.textContent = "Agent Executing...";
+    dom.dossierContent.innerHTML = `
+      <div class="empty-state">
+        <div class="btn-spinner" style="width: 36px; height: 36px; margin-bottom: 14px;"></div>
+        <h3 class="empty-title">🧠 Agentic Loop in Progress</h3>
+        <p class="empty-desc">Literature indexed. Multi-hop retrieval, cross-encoder reranking, and NLI verification are executing...</p>
+        <div style="margin-top: 14px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="document.querySelector('.tab-btn[data-tab=\\'tab-hops\\']').click()">
+            <span>View Live Hop Evolution</span> <span class="btn-arrow">➔</span>
+          </button>
+        </div>
+      </div>
+    `;
     fetchSystemStatus();
   } else if (event.type === "node_update") {
     const node = event.node;

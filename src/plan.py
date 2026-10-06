@@ -60,11 +60,12 @@ Focus on keywords and concepts that were missing or unverified.
 CRITICAL: Return ONLY the rewritten query text. Do not wrap in quotes or add explanatory notes."""
 
         print(f"Reformulating query targeting missing evidence...")
-        sub_question = generate_text(
+        raw_sub = generate_text(
             prompt=plan_prompt,
             model=GEMINI_MODEL,
             temperature=0.2
         ).strip().strip('"').strip("'")
+        sub_question = raw_sub if len(raw_sub) >= 3 else original_query
         print(f"Reformulated Sub-Question: \"{sub_question}\"")
 
     query_history.append(sub_question)
