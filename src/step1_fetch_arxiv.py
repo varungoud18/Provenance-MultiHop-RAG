@@ -135,11 +135,15 @@ def _fetch_from_arxiv(query: str, max_results: int = 10) -> List[Dict[str, Any]]
                 if name_el is not None and name_el.text:
                     authors.append(name_el.text.strip())
 
+            paper_url = f"https://arxiv.org/abs/{paper_id}"
+            pdf_url = f"https://arxiv.org/pdf/{paper_id}.pdf"
+
             papers.append({
                 "id": paper_id,
                 "title": clean_title,
                 "abstract": clean_abstract,
-                "url": f"https://arxiv.org/abs/{paper_id}",
+                "url": paper_url,
+                "pdf_url": pdf_url,
                 "published": pub_date,
                 "authors": authors
             })
@@ -197,16 +201,25 @@ def fetch_openalex_papers(query: str, max_results: int = 10) -> List[Dict[str, A
         doi = item.get("doi")
         openalex_id = item.get("id", "").split("/")[-1]
 
+        best_oa = item.get("best_oa_location") or {}
+        oa_info = item.get("open_access") or {}
+        direct_pdf = best_oa.get("pdf_url") or oa_info.get("oa_url")
+
         if arxiv_id:
             clean_id = arxiv_id.replace("https://arxiv.org/abs/", "").replace("http://arxiv.org/abs/", "")
             paper_url = f"https://arxiv.org/abs/{clean_id}"
             paper_id = clean_id
+            direct_pdf = f"https://arxiv.org/pdf/{clean_id}.pdf"
         elif doi:
             paper_url = doi
             paper_id = doi.replace("https://doi.org/", "")
         else:
             paper_url = item.get("id", f"https://openalex.org/{openalex_id}")
             paper_id = openalex_id
+
+        # Validate direct_pdf URL format
+        if direct_pdf and not (direct_pdf.startswith("http://") or direct_pdf.startswith("https://")):
+            direct_pdf = None
 
         authors = []
         for a in item.get("authorships", []):
@@ -221,6 +234,7 @@ def fetch_openalex_papers(query: str, max_results: int = 10) -> List[Dict[str, A
             "title": clean_text(title),
             "abstract": clean_text(abstract),
             "url": paper_url,
+            "pdf_url": direct_pdf,
             "published": pub_date,
             "authors": authors[:5]
         })

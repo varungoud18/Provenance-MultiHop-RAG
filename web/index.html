@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PROVENANCE // Autonomous Academic Agent & Citation Auditor</title>
-  <meta name="description" content="Autonomous Academic Agent & Citation Auditor that searches arXiv papers, reranks evidence locally, and audits every individual claim for natural language entailment." />
-  
+  <meta name="description"
+    content="Autonomous Academic Agent & Citation Auditor that searches arXiv papers, reranks evidence locally, and audits every individual claim for natural language entailment." />
+
   <!-- Modern Typography from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/static/style.css?v=2.2" />
 </head>
+
 <body class="theme-dark">
   <!-- Top Navigation & System Status Bar -->
   <header class="app-header">
     <div class="header-left">
       <div class="logo-mark" aria-hidden="true">
         <svg class="logo-svg" viewBox="0 0 24 24" width="20" height="20" fill="none">
-          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
         </svg>
       </div>
       <div class="brand-text">
@@ -61,16 +69,18 @@
     <!-- Quick Actions -->
     <div class="header-right">
       <button class="btn btn-secondary btn-sm" id="btn-open-history" title="View Recent Research Mission Sessions">
-        <svg class="btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+        <svg class="btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+          stroke-width="2">
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
         <span>Audit History</span>
       </button>
       <button class="btn btn-secondary btn-sm" id="btn-open-corpus" title="View Indexed Papers & Corpus Management">
-        <svg class="btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        <svg class="btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
         </svg>
         <span>Corpus Library</span>
       </button>
@@ -83,7 +93,8 @@
     <section class="panel control-panel">
       <div class="panel-header">
         <div class="panel-header-title">
-          <svg class="panel-header-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="panel-header-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+            stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
@@ -96,31 +107,23 @@
         <!-- Unified Modern Research Command Box -->
         <div class="command-card">
           <div class="command-input-wrapper">
-            <textarea
-              id="research-query"
-              class="command-textarea"
-              rows="3"
+            <textarea id="research-query" class="command-textarea" rows="3"
               placeholder="Ask an academic question (e.g. What optimization strategies are used for complex SQL queries?)..."
-              required
-            ></textarea>
+              required></textarea>
           </div>
 
           <!-- Bottom Action Dock inside Command Card -->
           <div class="command-dock">
             <div class="dock-left">
               <!-- Voice Dictation Button -->
-              <button
-                type="button"
-                id="btn-voice-input"
-                class="dock-btn dock-btn-mic"
-                title="Voice Input (Speech-to-Text)"
-                aria-label="Voice Input"
-              >
-                <svg class="dock-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                  <line x1="12" y1="19" x2="12" y2="23"/>
-                  <line x1="8" y1="23" x2="16" y2="23"/>
+              <button type="button" id="btn-voice-input" class="dock-btn dock-btn-mic"
+                title="Voice Input (Speech-to-Text)" aria-label="Voice Input">
+                <svg class="dock-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="23" />
+                  <line x1="8" y1="23" x2="16" y2="23" />
                 </svg>
                 <span id="mic-btn-label">Dictate</span>
               </button>
@@ -130,7 +133,8 @@
               </span>
 
               <!-- Live Literature Switch (Compact Pill) -->
-              <label class="dock-harvest-toggle" title="When enabled, dynamically discovers newest peer-reviewed papers across OpenAlex & arXiv">
+              <label class="dock-harvest-toggle"
+                title="When enabled, dynamically discovers newest peer-reviewed papers across OpenAlex & arXiv">
                 <input type="checkbox" id="toggle-auto-harvest" checked />
                 <span class="toggle-pill-dot"></span>
                 <span class="toggle-pill-text">Live Literature</span>
@@ -154,7 +158,7 @@
             <div class="dock-right">
               <!-- Floating mic element for backward compatibility with app.js -->
               <button type="button" id="btn-floating-mic" class="btn-floating-mic" style="display:none;"></button>
-              
+
               <button type="submit" class="btn-command-execute" id="btn-submit-research">
                 <span class="btn-spinner hidden" id="action-spinner"></span>
                 <span class="btn-text" id="action-btn-text">Run Audit</span>
@@ -168,13 +172,16 @@
         <div class="query-presets">
           <span class="presets-label">Academic Inquiry Presets</span>
           <div class="preset-chips">
-            <button type="button" class="chip" data-query="What optimization strategies are used for complex SQL queries?">
+            <button type="button" class="chip"
+              data-query="What optimization strategies are used for complex SQL queries?">
               SQL Optimization
             </button>
-            <button type="button" class="chip" data-query="How does retrieval augmented generation automate literature reviews?">
+            <button type="button" class="chip"
+              data-query="How does retrieval augmented generation automate literature reviews?">
               RAG Literature Reviews
             </button>
-            <button type="button" class="chip" data-query="What exact baseline models were compared against Simple T5 in the literature review paper?">
+            <button type="button" class="chip"
+              data-query="What exact baseline models were compared against Simple T5 in the literature review paper?">
               Simple T5 Baselines
             </button>
             <button type="button" class="chip" data-query="What is the capital of France and what are its main rivers?">
@@ -298,7 +305,8 @@
         </div>
 
         <div class="loop-back-indicator hidden" id="loop-back-indicator">
-          <svg class="loop-back-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="loop-back-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+            stroke-width="2">
             <polyline points="1 4 1 10 7 10"></polyline>
             <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
           </svg>
@@ -312,42 +320,46 @@
       <!-- Tabs Header -->
       <div class="panel-tabs">
         <button class="tab-btn active" data-tab="tab-findings">
-          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
+          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
           </svg>
           <span>Final Audited Dossier</span>
         </button>
         <button class="tab-btn" data-tab="tab-hops">
-          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="18" cy="5" r="3"/>
-            <circle cx="6" cy="12" r="3"/>
-            <circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
           </svg>
           <span>Hop Evolution</span>
           <span class="tab-count" id="hop-badge-count">0</span>
         </button>
         <button class="tab-btn" data-tab="tab-sources">
-          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
           </svg>
           <span>Cited Sources</span>
           <span class="tab-count" id="source-badge-count">0</span>
         </button>
         <button class="tab-btn" data-tab="tab-graph" id="tab-btn-graph">
-          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="6" cy="6" r="3"/>
-            <circle cx="18" cy="6" r="3"/>
-            <circle cx="12" cy="18" r="3"/>
-            <line x1="8.5" y1="7.5" x2="15.5" y2="7.5"/>
-            <line x1="7.5" y1="8.5" x2="10.5" y2="15.5"/>
-            <line x1="16.5" y1="8.5" x2="13.5" y2="15.5"/>
+          <svg class="tab-icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="6" cy="6" r="3" />
+            <circle cx="18" cy="6" r="3" />
+            <circle cx="12" cy="18" r="3" />
+            <line x1="8.5" y1="7.5" x2="15.5" y2="7.5" />
+            <line x1="7.5" y1="8.5" x2="10.5" y2="15.5" />
+            <line x1="16.5" y1="8.5" x2="13.5" y2="15.5" />
           </svg>
           <span>Citation Graph</span>
         </button>
@@ -360,8 +372,10 @@
           <div class="stat-card stat-card-gauge">
             <div class="gauge-wrap">
               <svg viewBox="0 0 36 36" class="circular-chart" width="40" height="40">
-                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                <path class="circle" id="stat-gauge-circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                <path class="circle-bg"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path class="circle" id="stat-gauge-circle" stroke-dasharray="0, 100"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
               </svg>
               <div class="gauge-meta">
                 <span class="stat-label">Audit Trust Index</span>
@@ -396,11 +410,12 @@
             </svg>
             <span>Copy Dossier</span>
           </button>
-          <button class="btn btn-secondary btn-sm" id="btn-export-bibtex" title="Export BibTeX bibliography for LaTeX / Overleaf / Zotero">
+          <button class="btn btn-secondary btn-sm" id="btn-export-bibtex"
+            title="Export BibTeX bibliography for LaTeX / Overleaf / Zotero">
             <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              <polyline points="10 10 12 12 14 10"/>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              <polyline points="10 10 12 12 14 10" />
             </svg>
             <span>Export BibTeX (.bib)</span>
           </button>
@@ -426,26 +441,28 @@
                     <stop offset="100%" stop-color="rgba(99, 102, 241, 0.2)" />
                   </linearGradient>
                   <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                     <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
                 </defs>
-                <line x1="40" y1="50" x2="110" y2="25" stroke="url(#grad-line)" stroke-width="1.5" stroke-dasharray="4 2" />
-                <line x1="40" y1="50" x2="110" y2="75" stroke="url(#grad-line)" stroke-width="1.5" stroke-dasharray="4 2" />
+                <line x1="40" y1="50" x2="110" y2="25" stroke="url(#grad-line)" stroke-width="1.5"
+                  stroke-dasharray="4 2" />
+                <line x1="40" y1="50" x2="110" y2="75" stroke="url(#grad-line)" stroke-width="1.5"
+                  stroke-dasharray="4 2" />
                 <line x1="110" y1="25" x2="180" y2="50" stroke="url(#grad-line)" stroke-width="1.5" />
                 <line x1="110" y1="75" x2="180" y2="50" stroke="url(#grad-line)" stroke-width="1.5" />
                 <line x1="180" y1="50" x2="250" y2="30" stroke="url(#grad-line)" stroke-width="1.5" />
                 <line x1="180" y1="50" x2="250" y2="70" stroke="url(#grad-line)" stroke-width="1.5" />
-                
-                <circle cx="40" cy="50" r="6" fill="#6366f1" filter="url(#glow)"/>
-                <circle cx="110" cy="25" r="4.5" fill="#38bdf8"/>
-                <circle cx="110" cy="75" r="4.5" fill="#818cf8"/>
-                <circle cx="180" cy="50" r="7" fill="#10b981" filter="url(#glow)"/>
-                <circle cx="250" cy="30" r="4.5" fill="#34d399"/>
-                <circle cx="250" cy="70" r="4.5" fill="#10b981"/>
+
+                <circle cx="40" cy="50" r="6" fill="#6366f1" filter="url(#glow)" />
+                <circle cx="110" cy="25" r="4.5" fill="#38bdf8" />
+                <circle cx="110" cy="75" r="4.5" fill="#818cf8" />
+                <circle cx="180" cy="50" r="7" fill="#10b981" filter="url(#glow)" />
+                <circle cx="250" cy="30" r="4.5" fill="#34d399" />
+                <circle cx="250" cy="70" r="4.5" fill="#10b981" />
               </svg>
             </div>
 
@@ -456,7 +473,8 @@
 
             <h3 class="hero-title">Audited Academic Intelligence</h3>
             <p class="hero-desc">
-              Every factual assertion is decomposed into atomic claims and cross-examined against peer-reviewed arXiv preprints via sentence-transformers cross-attention.
+              Every factual assertion is decomposed into atomic claims and cross-examined against peer-reviewed arXiv
+              preprints via sentence-transformers cross-attention.
             </p>
 
             <!-- 3 Architectural Pillars -->
@@ -464,9 +482,10 @@
               <div class="hero-feature-card">
                 <div class="feature-icon-wrap">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="2" y1="12" x2="22" y2="12"/>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                   </svg>
                 </div>
                 <div class="feature-info">
@@ -478,9 +497,9 @@
               <div class="hero-feature-card">
                 <div class="feature-icon-wrap">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                    <polyline points="2 17 12 22 22 17"/>
-                    <polyline points="2 12 12 17 22 12"/>
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" />
                   </svg>
                 </div>
                 <div class="feature-info">
@@ -492,8 +511,8 @@
               <div class="hero-feature-card">
                 <div class="feature-icon-wrap">
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
                 </div>
                 <div class="feature-info">
@@ -507,15 +526,18 @@
             <div class="starter-queries">
               <span class="starter-label">Launch a benchmark academic inquiry:</span>
               <div class="starter-cards-row">
-                <button type="button" class="starter-card" data-query="What optimization strategies are used for complex SQL queries?">
+                <button type="button" class="starter-card"
+                  data-query="What optimization strategies are used for complex SQL queries?">
                   <span class="starter-tag">Database Systems</span>
                   <span class="starter-text">Optimization strategies for complex SQL queries</span>
                 </button>
-                <button type="button" class="starter-card" data-query="How does retrieval augmented generation automate literature reviews?">
+                <button type="button" class="starter-card"
+                  data-query="How does retrieval augmented generation automate literature reviews?">
                   <span class="starter-tag">NLP & RAG</span>
                   <span class="starter-text">Automating literature reviews with RAG</span>
                 </button>
-                <button type="button" class="starter-card" data-query="What exact baseline models were compared against Simple T5 in the literature review paper?">
+                <button type="button" class="starter-card"
+                  data-query="What exact baseline models were compared against Simple T5 in the literature review paper?">
                   <span class="starter-tag">Empirical ML</span>
                   <span class="starter-text">Baseline models compared against Simple T5</span>
                 </button>
@@ -537,7 +559,8 @@
               </svg>
             </div>
             <h3 class="hero-title" style="font-size: 15px;">No Hops Executed Yet</h3>
-            <p class="hero-desc">Hop-by-hop subqueries, candidate passages, cross-encoder scores, and claim-level verification logs will stream here live during execution.</p>
+            <p class="hero-desc">Hop-by-hop subqueries, candidate passages, cross-encoder scores, and claim-level
+              verification logs will stream here live during execution.</p>
           </div>
         </div>
       </div>
@@ -548,12 +571,13 @@
           <div class="editorial-empty-state">
             <div class="empty-icon-wrap">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
               </svg>
             </div>
             <h3 class="hero-title" style="font-size: 15px;">No Sources Cited Yet</h3>
-            <p class="hero-desc">Full bibliographic records, chunk excerpts, and direct working arXiv URLs will populate once research is completed.</p>
+            <p class="hero-desc">Full bibliographic records, chunk excerpts, and direct working arXiv URLs will populate
+              once research is completed.</p>
           </div>
         </div>
       </div>
@@ -565,8 +589,10 @@
             <div class="graph-legend">
               <span class="legend-item"><span class="legend-dot dot-query"></span> Query Node</span>
               <span class="legend-item"><span class="legend-dot dot-paper"></span> arXiv Paper</span>
-              <span class="legend-item"><span class="legend-dot dot-claim-verified"></span> Verified Claim (Entailed)</span>
-              <span class="legend-item"><span class="legend-dot dot-claim-unverified"></span> Refuted Assertion (Hop 0 / Rejected)</span>
+              <span class="legend-item"><span class="legend-dot dot-claim-verified"></span> Verified Claim
+                (Entailed)</span>
+              <span class="legend-item"><span class="legend-dot dot-claim-unverified"></span> Refuted Assertion (Hop 0 /
+                Rejected)</span>
             </div>
             <div class="graph-controls">
               <span class="graph-hint">Hover nodes for scores • Click paper to inspect</span>
@@ -576,16 +602,18 @@
           <div class="graph-canvas-wrap" id="graph-canvas-wrap">
             <canvas id="citation-graph-canvas"></canvas>
             <div class="graph-empty-overlay" id="graph-empty-overlay">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-faint);">
-                <circle cx="6" cy="6" r="3"/>
-                <circle cx="18" cy="6" r="3"/>
-                <circle cx="12" cy="18" r="3"/>
-                <line x1="8.5" y1="7.5" x2="15.5" y2="7.5"/>
-                <line x1="7.5" y1="8.5" x2="10.5" y2="15.5"/>
-                <line x1="16.5" y1="8.5" x2="13.5" y2="15.5"/>
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"
+                style="color: var(--text-faint);">
+                <circle cx="6" cy="6" r="3" />
+                <circle cx="18" cy="6" r="3" />
+                <circle cx="12" cy="18" r="3" />
+                <line x1="8.5" y1="7.5" x2="15.5" y2="7.5" />
+                <line x1="7.5" y1="8.5" x2="10.5" y2="15.5" />
+                <line x1="16.5" y1="8.5" x2="13.5" y2="15.5" />
               </svg>
               <h4 style="color: #fff; margin-top: 10px; font-size: 14px;">Citation Graph Awaiting Inquiry</h4>
-              <p style="color: var(--text-muted); font-size: 12px; margin-top: 4px;">Launch a research question to visualize the neural knowledge network and citation weights.</p>
+              <p style="color: var(--text-muted); font-size: 12px; margin-top: 4px;">Launch a research question to
+                visualize the neural knowledge network and citation weights.</p>
             </div>
           </div>
         </div>
@@ -610,10 +638,11 @@
           <a href="#" target="_blank" rel="noopener noreferrer" class="field-link" id="drawer-arxiv-link">
             https://arxiv.org/abs/...
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="drawer-arxiv-pdf-link" title="Open Full Preprint PDF">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm"
+            id="drawer-arxiv-pdf-link" title="Open Full Preprint PDF">
             <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
             </svg>
             <span>Preprint PDF ↗</span>
           </a>
@@ -645,14 +674,16 @@
     <div class="modal-dialog modal-lg modal-history-dialog">
       <div class="modal-header">
         <div class="modal-header-left">
-          <svg class="modal-header-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="modal-header-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+            stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
           <h3 class="modal-title">Research Mission History (<span id="history-count">0</span> Saved Audits)</h3>
         </div>
         <div class="modal-header-actions">
-          <button type="button" class="btn btn-secondary btn-sm" id="btn-clear-history" title="Clear saved history">Clear All</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-clear-history"
+            title="Clear saved history">Clear All</button>
           <button class="btn-close" id="btn-close-history" aria-label="Close dialog">&times;</button>
         </div>
       </div>
@@ -675,19 +706,15 @@
 
       <div class="modal-body">
         <p class="modal-info">
-          Harvest fresh peer-reviewed abstracts directly from the public arXiv API, chunk them into overlapping segments, generate Gemini text embeddings, and index them into local FAISS.
+          Harvest fresh peer-reviewed abstracts directly from the public arXiv API, chunk them into overlapping
+          segments, generate Gemini text embeddings, and index them into local FAISS.
         </p>
 
         <form id="harvest-form">
           <div class="form-group">
             <label for="harvest-query" class="form-label">arXiv Search Topic / Keywords</label>
-            <input
-              type="text"
-              id="harvest-query"
-              class="form-input"
-              placeholder="e.g. quantum computing error correction, graph neural networks"
-              required
-            />
+            <input type="text" id="harvest-query" class="form-input"
+              placeholder="e.g. quantum computing error correction, graph neural networks" required />
           </div>
 
           <div class="form-group">
@@ -723,9 +750,10 @@
     <div class="modal-dialog modal-lg modal-corpus-dialog">
       <div class="modal-header">
         <div class="modal-header-left">
-          <svg class="modal-header-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          <svg class="modal-header-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
           </svg>
           <h3 class="modal-title">Corpus Library (<span id="corpus-count">0</span> Papers Indexed)</h3>
         </div>
@@ -757,6 +785,7 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Scripts -->
-  <script src="/static/app.js?v=3.1"></script>
+  <script src="/static/app.js?v=3.2"></script>
 </body>
+
 </html>

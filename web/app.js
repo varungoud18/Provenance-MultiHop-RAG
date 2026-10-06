@@ -363,11 +363,19 @@ function openCitationDrawer(sourceNum) {
   dom.drawerArxivLink.href = chunk.paper_url || "#";
 
   if (dom.drawerArxivPdfLink) {
-    let pdfUrl = "#";
-    if (chunk.paper_url) {
-      pdfUrl = chunk.paper_url.replace("/abs/", "/pdf/") + ".pdf";
+    const isArxiv = chunk.paper_url && chunk.paper_url.includes("arxiv.org");
+    const hasPdf = Boolean(chunk.pdf_url) || isArxiv;
+    const pdfHref = chunk.pdf_url || (isArxiv && chunk.paper_url ? chunk.paper_url.replace("/abs/", "/pdf/") + ".pdf" : null);
+
+    if (hasPdf && pdfHref) {
+      dom.drawerArxivPdfLink.href = pdfHref;
+      dom.drawerArxivPdfLink.innerHTML = `<span>📄 Direct PDF</span> <span class="btn-arrow">↗</span>`;
+      dom.drawerArxivPdfLink.title = "Open Full Text PDF";
+    } else {
+      dom.drawerArxivPdfLink.href = chunk.paper_url || "#";
+      dom.drawerArxivPdfLink.innerHTML = `<span>🔗 Publisher DOI</span> <span class="btn-arrow">↗</span>`;
+      dom.drawerArxivPdfLink.title = "View Publication via Publisher DOI";
     }
-    dom.drawerArxivPdfLink.href = pdfUrl;
   }
 
   dom.drawerRerankScore.textContent = chunk.cross_encoder_score !== undefined ? chunk.cross_encoder_score : "N/A";
@@ -1144,7 +1152,15 @@ function renderSourcesTab(chunks) {
     return;
   }
 
-  const itemsHtml = uniquePapers.map(p => `
+  const itemsHtml = uniquePapers.map(p => {
+    const isArxiv = p.paper_url && p.paper_url.includes("arxiv.org");
+    const hasPdf = Boolean(p.pdf_url) || isArxiv;
+    const pdfHref = p.pdf_url || (isArxiv && p.paper_url ? p.paper_url.replace('/abs/', '/pdf/') + '.pdf' : null);
+    const pdfBtn = (hasPdf && pdfHref)
+      ? `<a href="${pdfHref}" target="_blank" rel="noopener noreferrer" class="source-url" style="color: var(--primary); border-color: rgba(99, 102, 241, 0.4);"><span>📄 Direct PDF</span> <span>↗</span></a>`
+      : `<span class="source-url" style="opacity: 0.7; cursor: default;" title="Full paper accessible via publisher DOI"><span>🔒 Publisher Paywall</span></span>`;
+
+    return `
     <div class="source-item-card">
       <div class="source-item-header">
         <span class="source-num-pill">[${p.source_num}]</span>
@@ -1152,17 +1168,16 @@ function renderSourcesTab(chunks) {
       </div>
       <div style="display: flex; gap: 8px; align-items: center; margin: 4px 0 8px 0; flex-wrap: wrap;">
         <a href="${p.paper_url}" target="_blank" rel="noopener noreferrer" class="source-url">
-          <span>🔗 Abstract</span> <span>↗</span>
+          <span>${isArxiv ? '🔗 arXiv Abstract' : '🔗 Publisher DOI'}</span> <span>↗</span>
         </a>
-        <a href="${p.paper_url ? p.paper_url.replace('/abs/', '/pdf/') + '.pdf' : '#'}" target="_blank" rel="noopener noreferrer" class="source-url" style="color: var(--primary); border-color: rgba(99, 102, 241, 0.4);">
-          <span>📄 Direct PDF</span> <span>↗</span>
-        </a>
+        ${pdfBtn}
       </div>
       <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">
         ${escapeHtml(p.text.substring(0, 180))}...
       </p>
     </div>
-  `).join("");
+    `;
+  }).join("");
 
   dom.sourcesList.innerHTML = itemsHtml;
 }
@@ -1250,10 +1265,12 @@ dom.btnOpenCorpus.addEventListener("click", async () => {
 
     dom.corpusTbody.innerHTML = papers.map((p, idx) => {
       const isArxiv = (p.url && p.url.includes("arxiv.org")) || (p.id && /^\d{4}\.\d{4,5}/.test(p.id));
+      const hasPdf = Boolean(p.pdf_url) || isArxiv;
+      const pdfHref = p.pdf_url || (isArxiv && p.url ? p.url.replace('/abs/', '/pdf/') + '.pdf' : null);
       const sourceLabel = isArxiv ? "arXiv ↗" : "DOI ↗";
-      const pdfUrl = isArxiv
-        ? (p.url ? p.url.replace('/abs/', '/pdf/') + '.pdf' : '#')
-        : (p.url || '#');
+      const pdfBtnHtml = (hasPdf && pdfHref)
+        ? `<span style="color: var(--text-faint); margin: 0 4px;">•</span><a href="${pdfHref}" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">PDF ↗</a>`
+        : `<span style="color: var(--text-faint); margin: 0 4px;">•</span><span style="color: var(--text-muted); font-size: 0.78rem;" title="Full paper accessible via publisher DOI">Paywalled</span>`;
 
       return `
       <tr>
@@ -1263,8 +1280,7 @@ dom.btnOpenCorpus.addEventListener("click", async () => {
         <td class="font-mono" style="font-size: 0.82rem;">${p.id || 'N/A'}</td>
         <td>
           <a href="${p.url}" target="_blank" rel="noopener noreferrer">${sourceLabel}</a>
-          <span style="color: var(--text-faint); margin: 0 4px;">•</span>
-          <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">${isArxiv ? 'PDF ↗' : 'Source ↗'}</a>
+          ${pdfBtnHtml}
         </td>
       </tr>
       `;

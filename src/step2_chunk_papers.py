@@ -93,6 +93,7 @@ def process_papers_into_chunks(
                 "paper_id": paper["id"],
                 "paper_title": paper["title"],
                 "paper_url": paper["url"],
+                "pdf_url": paper.get("pdf_url") or (paper["url"].replace('/abs/', '/pdf/') + '.pdf' if "arxiv.org" in paper.get("url", "") else None),
                 "chunk_index": idx + 1,
                 "total_chunks_in_paper": len(text_chunks),
                 "word_count": len(text.split()),
