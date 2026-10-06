@@ -1,57 +1,41 @@
 [
   {
-    "id": "W2550810496",
-    "title": "Query Optimization using SQL Transformations",
-    "abstract": "Query optimization is of great importance for the performance of a relational database, especially for the execution of complex SQL statements. A query optimizer determines the best strategy for performing each query. The query optimizer chooses, for example, whether or not to use indexes for a given query, and which join techniques to use when joining multiple tables. These decisions have a tremendous effect on SQL performance, and query optimization is a key technology for every application, from operational systems to data warehouse and analysis systems to content-management systems. Oracle’s optimizer consists of four major components: SQL transformations, Execution plan selection, Cost model and statistics and Dynamic runtime optimization. We will discuss SQL transformations in this paper. 1.",
-    "url": "https://openalex.org/W2550810496",
-    "published": "2014-01-16",
+    "id": "10.1145/3514221.3526141",
+    "title": "End-to-end Optimization of Machine Learning Prediction Queries",
+    "abstract": "Prediction queries are widely used across industries to perform advanced analytics and draw insights from data. They include a data processing part (e.g., for joining, filtering, cleaning, featurizing the datasets) and a machine learning (ML) part invoking one or more trained models to perform predictions. These parts have so far been optimized in isolation, leaving significant opportunities for optimization unexplored. We present Raven, a production-ready system for optimizing prediction queries. Raven follows the enterprise architectural trend of collocating data and ML runtimes. It relies on a unified intermediate representation that captures both data and ML operators in a single graph structure to unlock two families of optimizations. First, it employs logical optimizations that pass information between the data part (and the properties of the underlying data) and the ML part to optimize each other. Second, it introduces logical-to-physical transformations that allow operators to be executed on different run-times (relational, ML, and DNN) and hardware (CPU, GPU). Novel data-driven optimizations determine the runtime to be used for each part of the query to achieve optimal performance. Our evaluation shows that Raven is able to improve performance of prediction queries on Apache Spark and SQL Server by up to 13.1x and 330x, respectively. Finally, for complex models where GPU acceleration is beneficial, Raven provides up to 8× speedup compared to state-of-the-art systems.",
+    "url": "https://doi.org/10.1145/3514221.3526141",
+    "published": "2022-06-10",
     "authors": [
-      "Meenakshi Sharma"
+      "Kwanghyun Park",
+      "Karla Saur",
+      "Dalitso Banda",
+      "Rathijit Sen",
+      "Matteo Interlandi"
     ]
   },
   {
-    "id": "10.18488/journal.79/2014.1.2/79.2.66.76",
-    "title": "Analytical Review of SQL Server Optimization",
-    "abstract": "It is a complex task to optimize query as well as to validate the correctness and effectiveness of query optimizer. A query optimizer should estimate and compare the costs of executing a query using different execution strategies and should choose the strategy with the lower cost estimate. To fairly and realistically compare different strategies accurate cost estimation is required. This is a challenging task to measure quality of query optimization as modern query optimizers provide more advanced optimization strategies and adaptive techniques. This paper describes different ways to improve the performance of SQL Server queries, index optimization with occasional references to particular SQL code and how to achieve the best performance for the given tables and queries by giving some tips for query optimization in Microsoft SQL Server. The paper provides a detailed overview of query optimization, Optimization techniques, testing of optimization techniques that are used to validate the query optimizer of Microsoft’s SQL Server and issues in query optimization testing.",
-    "url": "https://doi.org/10.18488/journal.79/2014.1.2/79.2.66.76",
-    "published": "2014-01-01",
+    "id": "10.61166/elm.v2i1.66",
+    "title": "Machine Learning for Database Management and Query Optimization",
+    "abstract": "In the present day, Traditional database management methods are becoming more inadequate for effective data processing as the volume of data created by systems grows. Machine learning approaches have shown promise in optimizing database queries and enhancing database administration functions such as query optimization, workload management, indexing, and data quality assurance to solve this problem. We investigate the different machine learning algorithms used for query optimization and database management in this comprehensive literature review. Our review shows that machine learning approaches such as Deep Learning (DL), Reinforcement learning (RL), supervised learning, natural language processing (NLP), and unsupervised learning, among others, may be employed for query analysis, execution, and assessment. It is feasible to increase query performance and react to changing conditions by introducing machine learning techniques into database management systems.",
+    "url": "https://doi.org/10.61166/elm.v2i1.66",
+    "published": "2024-08-12",
     "authors": [
-      "Gaurav Kumar",
-      "Arun Sangwan"
+      "Mohammed Marzook Fathima Fahima",
+      "Abul Hassan Sahna Sreen",
+      "S.L. Fathima Ruksana",
+      "D.T.E. Weihena",
+      "Mohamed Hasan Mohamed Majid"
     ]
   },
   {
-    "id": "10.3390/app12094569",
-    "title": "An Approach to Aid Decision-Making by Solving Complex Optimization Problems Using SQL Queries",
-    "abstract": "In combinatorial optimization, the more complex a problem is, the more challenging it becomes, usually causing most research to focus on creating solvers for larger cases. However, real-life situations also contain small-sized instances that deserve a researcher’s attention. For example, within a web development context, a developer might face small combinatorial optimization cases that fall in the following situations to solve them: (1) the development of an ad hoc specialized strategy is not justified; (2) the developer could lack the time, or skills, to create the solution; (3) the efficiency of naive brute force strategies might be compromised due to the programming paradigm use. Similar situations in this context, combined with a recent increasing interest in optimization information from databases, open a research area to develop easy-to-implement strategies that compete with those naive approaches and do not require specialized knowledge. Therefore, this work revises Structured Query Language (SQL) approaches and proposes new methods to tackle combinatorial optimization problems such as the Portfolio Selection Problem, Maximum Clique Problem, and Graph Coloring Problem. The performance of the resulting queries is compared against naive approaches; its potential to extend to other optimization problems is studied. The presented examples demonstrate the simplicity and versatility of using a SQL approach to solve small optimization problem instances.",
-    "url": "https://doi.org/10.3390/app12094569",
-    "published": "2022-04-30",
+    "id": "10.63282/3050-9246.ijetcsit-v4i4p112",
+    "title": "Query Optimization Using Machine Learning",
+    "abstract": "Traditional database optimizers rely on hand-crafted heuristics and cost models that assume predicate independence, uniform distributions, and stable runtime conditions. These assumptions are generally flawed on contemporary, heterogeneous workloads deep join trees, correlated attributes, UDFs, and elastic cloud resources that give rise to cascading cardinality errors, ineffective plan decisions, and inflated tail latencies. Machine learning (ML) offers it as an alternative based on the data. Report on and synthesize ML methods that enhance three optimizer layers: (i) predictive (learned cardinality estimators, neural cost models, plan-time latency predictors), (ii) decision (reinforcement learning to join ordering, operator selection, and knob tuning), and (iii) control (bandits to online adaptation, uncertainty-sensitive pruning, and rollback guardrails) in this paper. Present feature representations of SQL/ASTs, logical/physical plan DAGS, and operator-level sketches; contrast offline training on past logs with online continual learning; and study robustness to distribution shift and drift. Analytical and mixed workloads Empirical data using both analytical and mixed workloads indicate steady double-digit decrees in end-to-end execution time and SLO violations with low overheads in optimization. Another set of engineering concerns find are cold start, query log privacy, and interaction with concurrency control, and integration patterns of reproducibility and outline covering advisory scoring to end-to-end learned optimizers. The paper is finalized with a research agenda that is dedicated to uncertainty-calibrated planning, cross-database transfer, explainability, and cross-tail and standardized benchmarks",
+    "url": "https://doi.org/10.63282/3050-9246.ijetcsit-v4i4p112",
+    "published": "2023-01-01",
     "authors": [
-      "José Torres-Jiménez",
-      "Nelson Rangel-Valdez",
-      "Miguel De‐la‐Torre",
-      "Himer Ávila-George"
-    ]
-  },
-  {
-    "id": "10.1109/icde.2007.368993",
-    "title": "Robust Heuristics for Scalable Optimization of Complex SQL Queries",
-    "abstract": "Modern database systems incorporate a query optimizer to identify the most efficient \"query execution plan\" for executing the declarative SQL queries submitted by users. A dynamic-programming-based approach is used to exhaustively enumerate the combinatorially large search space of plan alternatives and, using a cost model, to identify the optimal choice. While dynamic programming (DP) works very well for moderately complex queries with up to around a dozen base relations, it usually fails to scale beyond this stage due to its inherent exponential space and time complexity. Therefore, DP becomes practically infeasible for complex queries with a large number of base relations, such as those found in current decision-support and enterprise management applications. To address the above problem, a variety of approaches have been proposed in the literature. Some completely jettison the DP approach and resort to alternative techniques such as randomized algorithms, whereas others have retained DP by using heuristics to prune the search space to computationally manageable levels. In the latter class, a well-known strategy is \"iterative dynamic programming\" (IDP) wherein DP is employed bottom-up until it hits its feasibility limit, and then iteratively restarted with a significantly reduced subset of the execution plans currently under consideration. The experimental evaluation of IDP indicated that by appropriate choice of algorithmic parameters, it was possible to almost always obtain \"good\" (within a factor of twice of the optimal) plans, and in the few remaining cases, mostly \"acceptable\" (within an order of magnitude of the optimal) plans, and rarely, a \"bad\" plan. While IDP is certainly an innovative and powerful approach, we have found that there are a variety of common query frameworks wherein it can fail to consistently produce good plans, let alone the optimal choice. This is especially so when star or clique components are present, increasing the complexity of the join graphs. Worse, this shortcoming is exacerbated when the number of relations participating in the query is scaled upwards.",
-    "url": "https://doi.org/10.1109/icde.2007.368993",
-    "published": "2007-04-01",
-    "authors": [
-      "Gopal Chandra Das",
-      "Jayant R. Haritsa"
-    ]
-  },
-  {
-    "id": "W2349443635",
-    "title": "SQL Statement in Database Systems to Optimize",
-    "abstract": "The database query is the most basic and commonly used,the most complex operation,query the merits of operating a direct impact on the performance of database applications.This article discusses the technology based on SQL query rewriting the database query optimization strategies,through query rewriting can be written by the user efficiency of SQL statements to re-optimize the portfolio to become more efficient query.",
-    "url": "https://openalex.org/W2349443635",
-    "published": "2009-01-01",
-    "authors": [
-      "Wenqiang Song"
+      "Nagireddy Karri",
+      "Partha Sarathi Reddy Pedda Muntala"
     ]
   }
 ]
