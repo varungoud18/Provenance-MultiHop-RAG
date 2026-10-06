@@ -205,14 +205,14 @@ def run_agent_thread(initial_state: ResearchAgentState, event_queue: queue.Queue
                             "type": "harvest_complete",
                             "papers_count": len(papers),
                             "chunks_count": len(chunks),
-                            "message": f"Successfully indexed {len(chunks)} fresh chunks from {len(papers)} papers on arXiv."
+                            "message": f"Successfully indexed {len(chunks)} fresh chunks from {len(papers)} peer-reviewed papers."
                         })
                     else:
                         event_queue.put({
                             "type": "harvest_complete",
                             "papers_count": 0,
                             "chunks_count": 0,
-                            "message": "arXiv returned no matching preprints; proceeding with indexed corpus."
+                            "message": "Academic search returned no matching publications; proceeding with indexed corpus."
                         })
                 except Exception as harvest_err:
                     print(f"[HARVEST NOTICE] {harvest_err}")

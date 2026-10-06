@@ -589,12 +589,12 @@ dom.researchForm.addEventListener("submit", async (e) => {
 // Process individual SSE events from server
 function handleAgentEvent(event) {
   if (event.type === "harvest_start") {
-    dom.actionBtnText.textContent = "Harvesting arXiv...";
+    dom.actionBtnText.textContent = "Harvesting Literature...";
     dom.dossierContent.innerHTML = `
       <div class="empty-state">
         <div class="btn-spinner" style="width: 36px; height: 36px; margin-bottom: 14px;"></div>
-        <h3 class="empty-title">🌐 Auto-Harvesting arXiv Literature</h3>
-        <p class="empty-desc">${escapeHtml(event.message || "Downloading newest papers matching your query...")}</p>
+        <h3 class="empty-title">🌐 Auto-Harvesting Academic Literature</h3>
+        <p class="empty-desc">${escapeHtml(event.message || "Discovering peer-reviewed papers matching your query...")}</p>
       </div>
     `;
   } else if (event.type === "harvest_complete") {
